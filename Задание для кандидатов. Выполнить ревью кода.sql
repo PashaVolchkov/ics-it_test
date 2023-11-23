@@ -88,7 +88,7 @@ begin
 		and s.ID_Season = cs.ID_Season
 		and s.DateBegin = cs.DateBegin
 	when matched 
-		and t.ID_CustomerSystemType <> s.ID_CustomerSystemType then
+		and ID_CustomerSystemType <> s.ID_CustomerSystemType then
 		update
 		set
 			ID_CustomerSystemType = s.ID_CustomerSystemType

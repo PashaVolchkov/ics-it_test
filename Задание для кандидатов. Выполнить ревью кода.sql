@@ -19,7 +19,7 @@ begin
 			return
 		end
 
-	--Чтение из слоя временных данных
+	-- Чтение из слоя временных данных
 	select
 		c.ID as ID_dbo_Customer
 		,cst.ID as ID_CustomerSystemType

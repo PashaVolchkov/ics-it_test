@@ -2,7 +2,8 @@ create procedure syn.usp_ImportFileCustomerSeasonal(@ID_Record int)
 as
 set nocount on
 begin
-	declare @RowCount int = (select count(*) from syn.SA_CustomerSeasonal)
+	declare
+		@RowCount int = (select count(*) from syn.SA_CustomerSeasonal)
 		,@ErrorMessage varchar(max)
 
 	-- Проверка на корректность загрузки
@@ -35,7 +36,7 @@ begin
 		join dbo.Season as s on s.Name = cs.Season
 		join dbo.Customer as c_dist on c_dist.UID_DS = cs.UID_DS_CustomerDistributor
 			and cd.ID_mapping_DataSource = 1
-		join syn.CustomerSystemType as cst on cs.CustomerSystemType = cst.Name
+		join syn.CustomerSystemType as cst on cst.Name = cs.CustomerSystemType
 	where try_cast(cs.DateBegin as date) is not null
 		and try_cast(cs.DateEnd as date) is not null
 		and try_cast(isnull(cs.FlagActive, 0) as bit) is not null
